@@ -1,0 +1,23 @@
+# Build output
+# dist/ is COMMITTED so git+ssh consumers (no build step) get pre-built JS/d.ts.
+# Run `npm run build` after editing src/, then commit the regenerated dist/.
+*.tsbuildinfo
+
+# Dependencies
+node_modules/
+
+# Lock files
+# Intentionally NOT committed for a library — consumers maintain their own
+# lock file; this also avoids leaking host-specific registry URLs.
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Logs / temp
+*.log
+.turbo/
+.DS_Store
+
+# Editor
+.vscode/
+.idea/

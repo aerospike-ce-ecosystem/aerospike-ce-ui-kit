@@ -1,0 +1,67 @@
+{
+  "name": "aerospike-ce-ui-kit",
+  "version": "0.1.0",
+  "description": "Shared UI design system for the Aerospike CE Ecosystem — React 18 components, design tokens, Tailwind preset.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./tokens.css": "./src/tokens.css",
+    "./styles.css": "./src/theme.css",
+    "./tailwind": {
+      "types": "./dist/tailwind/preset.d.ts",
+      "import": "./dist/tailwind/preset.js",
+      "require": "./dist/tailwind/preset.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "src/tokens.css",
+    "src/theme.css"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aerospike-ce-ecosystem/aerospike-ce-ui-kit.git"
+  },
+  "keywords": [
+    "aerospike",
+    "ui",
+    "react",
+    "design-system",
+    "tailwind"
+  ],
+  "peerDependencies": {
+    "react": "^18 || ^19",
+    "react-dom": "^18 || ^19",
+    "tailwindcss": "^3.4"
+  },
+  "dependencies": {
+    "@radix-ui/react-accordion": "^1.2.12",
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-dropdown-menu": "^2.1.16",
+    "@radix-ui/react-popover": "^1.1.15",
+    "@radix-ui/react-tooltip": "^1.2.8",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.6.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "tailwindcss": "^3.4.17",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.3"
+  }
+}
