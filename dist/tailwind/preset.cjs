@@ -99,6 +99,7 @@ var preset = {
         "accent-amber": {
           50: "var(--accent-amber-50, #FFF7E6)",
           100: "var(--accent-amber-100, #FFE9B8)",
+          400: "var(--accent-amber-400, #FFAE17)",
           500: "var(--accent-amber-500, #C99A3F)",
           700: "var(--accent-amber-700, #8A6620)"
         },

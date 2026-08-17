@@ -1,3 +1,5 @@
+"use client";
+
 // src/utils/cn.ts
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -1089,7 +1091,7 @@ function LineChart({ series, w = 720, h = 240, labels, yTicks = 4 }) {
   const min = 0;
   const xs = (i, n) => padL + i / Math.max(n - 1, 1) * cw;
   const ys = (v) => padT + ch - (v - min) / (niceMax - min) * ch;
-  const colors = ["var(--primary-50)", "var(--accent-emerald-50, #00A392)", "var(--bookmark-50, #FFAE17)"];
+  const colors = ["var(--primary-50)", "var(--accent-emerald-500)", "var(--accent-amber-400)"];
   return /* @__PURE__ */ jsxs22("svg", { width: "100%", viewBox: `0 0 ${w} ${h}`, style: { display: "block" }, children: [
     Array.from({ length: yTicks + 1 }).map((_, i) => {
       const v = niceMax / yTicks * (yTicks - i);

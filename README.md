@@ -41,6 +41,9 @@ Run `npm install` (or `pnpm`, `yarn`). The kit ships pre-built `dist/` only if y
 
 ## Setup (4 steps)
 
+Works with Tailwind **v3.4+ and v4**. Step 1 is identical on both; step 2 is
+the only place the two versions differ.
+
 ### 1. Add the Tailwind preset
 
 ```ts
@@ -57,7 +60,27 @@ export default {
 } satisfies Config
 ```
 
+Keep the `node_modules/aerospike-ce-ui-kit/dist` glob: a few components emit
+Tailwind utilities rather than kit classes (for example the `Accordion` chevron
+uses `transition-transform duration-fast group-data-[state=open]:rotate-180`),
+so without it those utilities are never generated and the chevron does not
+rotate. This applies to v4 too — v4 reads `content` from the config it loads
+via `@config`, and its automatic source detection skips `node_modules`.
+
 ### 2. Import tokens + base styles in your global CSS
+
+**Tailwind v4** — the preset is a legacy JS config, which v4 loads through
+`@config`:
+
+```css
+/* globals.css */
+@import "tailwindcss";
+@import "aerospike-ce-ui-kit/tokens.css";
+@import "aerospike-ce-ui-kit/styles.css";
+@config "../../tailwind.config.ts";   /* path is relative to this CSS file */
+```
+
+**Tailwind v3**:
 
 ```css
 /* globals.css */
@@ -122,6 +145,29 @@ export default function Dashboard() {
 
 ---
 
+## Server Components (Next.js App Router)
+
+The main entry is published with a `"use client"` banner, because most of the
+components are interactive. A Server Component may import from it — Next places
+the import on the client boundary — but props crossing that boundary have to be
+serializable, and the components render on the client.
+
+For the purely presentational components there is a second entry that carries no
+client directive, so they render on the server and ship no client JS:
+
+```tsx
+import { Card, PageHead, Table, Badge } from "aerospike-ce-ui-kit/server"
+```
+
+It exports `AppShell`, `StatusBar` (+ `HealthDots`), `PageHead`, `Card`, `Empty`,
+`Table` (+ `CellStack`, `CellMeta`), `Badge`, `StatusDot` (+ `StatusLabel`),
+`Avatar` (+ `AvatarStack`), `Meter`, `LineChart`, `BarChart`, `Donut`, `Icon`,
+and `cn` — all of which are also exported from the main entry, so `./server`
+adds an option and removes nothing. Anything interactive (`Button`, `Dialog`,
+`Dropdown`, `Tabs`, form controls, …) comes from the main entry only.
+
+---
+
 ## Component catalogue
 
 **Shell**: `AppShell`, `Sidebar` (+ `SidebarBrand`), `TopBar`, `StatusBar`, `WorkspaceSwitcher`
@@ -146,6 +192,20 @@ Override CSS variables on `<body>` (or any ancestor) to re-brand:
   "--font-sans": '"Inter", system-ui, sans-serif',
 }}>
 ```
+
+`--primary-50` is genuinely the only colour you have to set. Under
+`[data-app="ace"]` the shades the components actually read are derived from it
+with `color-mix(in oklch, …)`:
+
+| step | derivation | `--primary-50: #C8202B` |
+| --- | --- | --- |
+| `--primary-40` (`:active`) | `var(--primary-50) 83%, black` | `#9C161F` |
+| `--primary-45` (`:hover`) | `var(--primary-50) 92%, black` | `#B31B25` |
+| `--primary-65` | `var(--primary-50) 50%, white` | `#ED9B94` |
+| `--primary-95` (tints) | `var(--primary-50) 12%, white` | `#FDE7E5` |
+
+`--primary-10/-30/-55/-80/-90` are still literals in `tokens.css`, but no
+exported component or kit class reads them.
 
 For deeper customization, fork the kit or `@import` your own CSS after `aerospike-ce-ui-kit/styles.css`.
 

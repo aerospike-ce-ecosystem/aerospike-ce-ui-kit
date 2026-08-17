@@ -475,6 +475,9 @@ button { font-family: inherit; }
 [data-theme="dark"] .tooltip { background: var(--neutral-95); color: var(--neutral-9); }
 .tooltip-wrap:hover .tooltip { opacity: 1; }
 
+/* Referenced by the Radix-based <Tooltip> component (Tooltip.tsx). */
+@keyframes tooltipShow { from { opacity: 0; transform: scale(0.96); } }
+
 /* =====================================================================
    Modal / Dialog
    ===================================================================== */
@@ -525,6 +528,11 @@ button { font-family: inherit; }
 
 @keyframes fadeIn { from { opacity: 0; } }
 @keyframes scaleIn { from { opacity: 0; transform: scale(0.96); } }
+
+/* Referenced by <DrawerContent> (Drawer.tsx), which is portaled dialog content
+   pinned to one edge and shares .modal-backdrop above. */
+@keyframes drawerSlideRight { from { transform: translateX(100%); } }
+@keyframes drawerSlideLeft  { from { transform: translateX(-100%); } }
 
 /* =====================================================================
    Dropdown / Menu
@@ -1311,8 +1319,13 @@ button:focus-visible { outline-offset: 2px; }
   --divider:          #E9ECEF;
   --outline-input:    #D9DCE1;
 
-  --primary-45: #00B14F;
-  --primary-40: #009A44;
+  /* Every step is derived from --primary-50, so overriding that one variable
+     re-brands the whole ramp — the contract README → Theming documents. The
+     -45/-40 percentages are calibrated against the documented brand green
+     #03C75A, where they reproduce the literal hexes they replace: -45 was
+     #00B14F, now resolves to #02B250; -40 was #009A44, now #029B44. */
+  --primary-45: color-mix(in oklch, var(--primary-50) 92%, black);
+  --primary-40: color-mix(in oklch, var(--primary-50) 83%, black);
   --primary-95: color-mix(in oklch, var(--primary-50) 12%, white);
   --primary-65: color-mix(in oklch, var(--primary-50) 50%, white);
 

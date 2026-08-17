@@ -28,7 +28,12 @@ export function LineChart({ series, w = 720, h = 240, labels, yTicks = 4 }: Line
   const min = 0;
   const xs = (i: number, n: number) => padL + (i / Math.max(n - 1, 1)) * cw;
   const ys = (v: number) => padT + ch - ((v - min) / (niceMax - min)) * ch;
-  const colors = ["var(--primary-50)", "var(--accent-emerald-50, #00A392)", "var(--bookmark-50, #FFAE17)"];
+  // Every series colour resolves to a token that tokens.css actually defines,
+  // so a re-brand reaches the chart. No literal fallbacks: they are what hid
+  // the two broken references this replaces — --accent-emerald-50 is a pale
+  // mint rather than the saturated teal intended, and --bookmark-50 was never
+  // defined anywhere, so both series silently ignored the token layer.
+  const colors = ["var(--primary-50)", "var(--accent-emerald-500)", "var(--accent-amber-400)"];
   return (
     <svg width="100%" viewBox={`0 0 ${w} ${h}`} style={{ display: "block" }}>
       {Array.from({ length: yTicks + 1 }).map((_, i) => {

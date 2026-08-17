@@ -15,7 +15,7 @@ interface IconProps {
     style?: CSSProperties;
     className?: string;
 }
-declare function Icon({ name, size, fill, style, className }: IconProps): JSX.Element;
+declare function Icon({ name, size, fill, style, className }: IconProps): React.JSX.Element;
 
 type AppShellTheme = "light" | "dark";
 type AppShellDensity = "compact" | "comfortable" | "spacious";
@@ -38,7 +38,7 @@ interface AppShellProps {
  * Apply data-app="ace" + theme/density attributes. Children should be:
  * <Sidebar/>, <TopBar/>, <main className="main">…</main>, optional <StatusBar/>
  */
-declare function AppShell({ theme, density, sidebar, primaryColor, className, children, }: AppShellProps): JSX.Element;
+declare function AppShell({ theme, density, sidebar, primaryColor, className, children, }: AppShellProps): React.JSX.Element;
 
 interface NavItem {
     id: string;
@@ -62,13 +62,13 @@ interface SidebarProps {
     foot?: ReactNode;
     className?: string;
 }
-declare function Sidebar({ brand, workspaceSwitcher, groups, foot, className }: SidebarProps): JSX.Element;
+declare function Sidebar({ brand, workspaceSwitcher, groups, foot, className }: SidebarProps): React.JSX.Element;
 interface SidebarBrandProps {
     mark?: ReactNode;
     title: ReactNode;
     subtitle?: ReactNode;
 }
-declare function SidebarBrand({ mark, title, subtitle }: SidebarBrandProps): JSX.Element;
+declare function SidebarBrand({ mark, title, subtitle }: SidebarBrandProps): React.JSX.Element;
 
 interface TopBarProps {
     searchPlaceholder?: string;
@@ -78,13 +78,13 @@ interface TopBarProps {
     className?: string;
     children?: ReactNode;
 }
-declare function TopBar({ searchPlaceholder, onSearchClick, searchKbd, showSearch, className, children, }: TopBarProps): JSX.Element;
+declare function TopBar({ searchPlaceholder, onSearchClick, searchKbd, showSearch, className, children, }: TopBarProps): React.JSX.Element;
 interface CostPillProps {
     label?: ReactNode;
     value: ReactNode;
     className?: string;
 }
-declare function CostPill({ label, value, className }: CostPillProps): JSX.Element;
+declare function CostPill({ label, value, className }: CostPillProps): React.JSX.Element;
 
 type Status = "running" | "awaiting" | "queued" | "succeeded" | "failed" | "cancelled" | "healthy" | "degraded" | "unreach" | "info" | "critical" | "warning" | "error" | "neutral";
 interface StatusDotProps {
@@ -92,14 +92,14 @@ interface StatusDotProps {
     className?: string;
     "aria-label"?: string;
 }
-declare function StatusDot({ status, className, ...rest }: StatusDotProps): JSX.Element;
+declare function StatusDot({ status, className, ...rest }: StatusDotProps): React.JSX.Element;
 interface StatusLabelProps {
     status: Status;
     children?: ReactNode;
     muted?: boolean;
     className?: string;
 }
-declare function StatusLabel({ status, children, muted, className }: StatusLabelProps): JSX.Element;
+declare function StatusLabel({ status, children, muted, className }: StatusLabelProps): React.JSX.Element;
 
 interface HealthService {
     name: string;
@@ -116,12 +116,12 @@ interface StatusBarProps {
     className?: string;
     children?: ReactNode;
 }
-declare function StatusBar({ connected, connectedLabel, disconnectedLabel, queueDepth, services, version, docsHref, className, children, }: StatusBarProps): JSX.Element;
+declare function StatusBar({ connected, connectedLabel, disconnectedLabel, queueDepth, services, version, docsHref, className, children, }: StatusBarProps): React.JSX.Element;
 interface HealthDotsProps {
     services: HealthService[];
     className?: string;
 }
-declare function HealthDots({ services, className }: HealthDotsProps): JSX.Element;
+declare function HealthDots({ services, className }: HealthDotsProps): React.JSX.Element;
 
 interface WorkspaceOption {
     id: string;
@@ -139,7 +139,7 @@ interface WorkspaceSwitcherProps {
     menuLabel?: ReactNode;
     className?: string;
 }
-declare function WorkspaceSwitcher({ current, options, onSelect, onManage, onCreate, menuLabel, className, }: WorkspaceSwitcherProps): JSX.Element;
+declare function WorkspaceSwitcher({ current, options, onSelect, onManage, onCreate, menuLabel, className, }: WorkspaceSwitcherProps): React.JSX.Element;
 
 interface PageHeadProps {
     title: ReactNode;
@@ -147,7 +147,7 @@ interface PageHeadProps {
     className?: string;
     children?: ReactNode;
 }
-declare function PageHead({ title, sub, className, children }: PageHeadProps): JSX.Element;
+declare function PageHead({ title, sub, className, children }: PageHeadProps): React.JSX.Element;
 
 interface CardProps {
     title?: ReactNode;
@@ -157,7 +157,7 @@ interface CardProps {
     className?: string;
     children: ReactNode;
 }
-declare function Card({ title, meta, action, flush, className, children }: CardProps): JSX.Element;
+declare function Card({ title, meta, action, flush, className, children }: CardProps): React.JSX.Element;
 
 type BannerTone = "info" | "warning" | "success";
 interface BannerProps {
@@ -171,7 +171,7 @@ interface BannerProps {
     dismissable?: boolean;
     className?: string;
 }
-declare function Banner({ tone, icon, title, desc, actionLabel, onAction, onDismiss, dismissable, className, }: BannerProps): JSX.Element | null;
+declare function Banner({ tone, icon, title, desc, actionLabel, onAction, onDismiss, dismissable, className, }: BannerProps): React.JSX.Element | null;
 
 type KPIAccent = "amber" | "primary" | "danger";
 interface KPIProps {
@@ -185,7 +185,7 @@ interface KPIProps {
     onClick?: () => void;
     className?: string;
 }
-declare function KPI({ label, value, unit, delta, dir, hint, accent, onClick, className }: KPIProps): JSX.Element;
+declare function KPI({ label, value, unit, delta, dir, hint, accent, onClick, className }: KPIProps): React.JSX.Element;
 
 interface EmptyProps {
     icon?: IconName | string;
@@ -194,7 +194,7 @@ interface EmptyProps {
     action?: ReactNode;
     className?: string;
 }
-declare function Empty({ icon, title, sub, action, className }: EmptyProps): JSX.Element;
+declare function Empty({ icon, title, sub, action, className }: EmptyProps): React.JSX.Element;
 
 interface TabItem {
     value: string;
@@ -208,7 +208,7 @@ interface TabsProps {
     pill?: boolean;
     className?: string;
 }
-declare function Tabs({ tabs, value, onChange, pill, className }: TabsProps): JSX.Element;
+declare function Tabs({ tabs, value, onChange, pill, className }: TabsProps): React.JSX.Element;
 
 interface BreadcrumbItem {
     label: ReactNode;
@@ -221,20 +221,20 @@ interface BreadcrumbProps {
     items: BreadcrumbItem[];
     className?: string;
 }
-declare function Breadcrumb({ items, className }: BreadcrumbProps): JSX.Element;
+declare function Breadcrumb({ items, className }: BreadcrumbProps): React.JSX.Element;
 
-declare function Table({ className, children, ...rest }: HTMLAttributes<HTMLTableElement>): JSX.Element;
+declare function Table({ className, children, ...rest }: HTMLAttributes<HTMLTableElement>): React.JSX.Element;
 interface CellStackProps {
     className?: string;
     children: ReactNode;
 }
-declare function CellStack({ className, children }: CellStackProps): JSX.Element;
+declare function CellStack({ className, children }: CellStackProps): React.JSX.Element;
 interface CellMetaProps {
     name: ReactNode;
     sub?: ReactNode;
     className?: string;
 }
-declare function CellMeta({ name, sub, className }: CellMetaProps): JSX.Element;
+declare function CellMeta({ name, sub, className }: CellMetaProps): React.JSX.Element;
 
 type ButtonVariant = "primary" | "secondary" | "ghost" | "gray" | "danger";
 type ButtonSize = "sm" | "md" | "lg";
@@ -258,14 +258,14 @@ interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "chi
     title?: string;
     "aria-label"?: string;
 }
-declare function Button({ variant, size, leftIcon, rightIcon, className, children, ...rest }: ButtonProps): JSX.Element;
+declare function Button({ variant, size, leftIcon, rightIcon, className, children, ...rest }: ButtonProps): React.JSX.Element;
 interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     icon: IconName | string;
     size?: ButtonSize;
     tooltip?: string;
     children?: ReactNode;
 }
-declare function IconButton({ icon, size, tooltip, className, ...rest }: IconButtonProps): JSX.Element;
+declare function IconButton({ icon, size, tooltip, className, ...rest }: IconButtonProps): React.JSX.Element;
 
 type BadgeTone = "default" | "primary" | "success" | "warning" | "error" | "info";
 interface BadgeProps {
@@ -274,7 +274,7 @@ interface BadgeProps {
     className?: string;
     children: ReactNode;
 }
-declare function Badge({ tone, dot, className, children }: BadgeProps): JSX.Element;
+declare function Badge({ tone, dot, className, children }: BadgeProps): React.JSX.Element;
 
 interface ChipProps {
     active?: boolean;
@@ -283,14 +283,14 @@ interface ChipProps {
     className?: string;
     children: ReactNode;
 }
-declare function Chip({ active, leftIcon, onClick, className, children }: ChipProps): JSX.Element;
+declare function Chip({ active, leftIcon, onClick, className, children }: ChipProps): React.JSX.Element;
 interface TagProps {
     removable?: boolean;
     onRemove?: MouseEventHandler<HTMLSpanElement>;
     className?: string;
     children: ReactNode;
 }
-declare function Tag({ removable, onRemove, className, children }: TagProps): JSX.Element;
+declare function Tag({ removable, onRemove, className, children }: TagProps): React.JSX.Element;
 
 type AvatarSize = "sm" | "md" | "lg" | "xl";
 interface AvatarProps {
@@ -300,7 +300,7 @@ interface AvatarProps {
     color?: string;
     className?: string;
 }
-declare function Avatar({ name, src, size, color, className }: AvatarProps): JSX.Element;
+declare function Avatar({ name, src, size, color, className }: AvatarProps): React.JSX.Element;
 interface AvatarStackUser {
     name: string;
     color?: string;
@@ -310,7 +310,7 @@ interface AvatarStackProps {
     max?: number;
     className?: string;
 }
-declare function AvatarStack({ users, max, className }: AvatarStackProps): JSX.Element;
+declare function AvatarStack({ users, max, className }: AvatarStackProps): React.JSX.Element;
 
 interface TextInputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
     label?: ReactNode;
@@ -318,13 +318,13 @@ interface TextInputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "si
     error?: ReactNode;
     leftIcon?: IconName | string;
 }
-declare function TextInput({ label, hint, error, leftIcon, className, ...rest }: TextInputProps): JSX.Element;
+declare function TextInput({ label, hint, error, leftIcon, className, ...rest }: TextInputProps): React.JSX.Element;
 interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
     label?: ReactNode;
     hint?: ReactNode;
     error?: ReactNode;
 }
-declare function Textarea({ label, hint, error, className, ...rest }: TextareaProps): JSX.Element;
+declare function Textarea({ label, hint, error, className, ...rest }: TextareaProps): React.JSX.Element;
 interface SelectOption {
     label: string;
     value: string;
@@ -335,19 +335,19 @@ interface SelectProps extends Omit<SelectHTMLAttributes<HTMLSelectElement>, "siz
     error?: ReactNode;
     options: Array<SelectOption | string>;
 }
-declare function Select({ label, hint, error, options, className, ...rest }: SelectProps): JSX.Element;
+declare function Select({ label, hint, error, options, className, ...rest }: SelectProps): React.JSX.Element;
 
 interface ToggleProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "onChange" | "type"> {
     checked?: boolean;
     onChange?: (next: boolean) => void;
 }
-declare function Toggle({ checked, onChange, ...rest }: ToggleProps): JSX.Element;
+declare function Toggle({ checked, onChange, ...rest }: ToggleProps): React.JSX.Element;
 interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "onChange" | "type"> {
     checked?: boolean;
     onChange?: (next: boolean) => void;
     label?: ReactNode;
 }
-declare function Checkbox({ checked, onChange, label, ...rest }: CheckboxProps): JSX.Element;
+declare function Checkbox({ checked, onChange, label, ...rest }: CheckboxProps): React.JSX.Element;
 interface RadioProps {
     checked?: boolean;
     onChange?: (value: string) => void;
@@ -355,7 +355,7 @@ interface RadioProps {
     value: string;
     label?: ReactNode;
 }
-declare function Radio({ checked, onChange, name, value, label }: RadioProps): JSX.Element;
+declare function Radio({ checked, onChange, name, value, label }: RadioProps): React.JSX.Element;
 
 interface SparklineProps {
     data: number[];
@@ -364,7 +364,7 @@ interface SparklineProps {
     h?: number;
     fill?: boolean;
 }
-declare function Sparkline({ data, color, w, h, fill, }: SparklineProps): JSX.Element | null;
+declare function Sparkline({ data, color, w, h, fill, }: SparklineProps): React.JSX.Element | null;
 
 type MeterTone = "is-warn" | "is-danger" | "is-teal" | "";
 interface MeterProps {
@@ -376,7 +376,7 @@ interface MeterProps {
     unit?: string;
     className?: string;
 }
-declare function Meter({ label, current, cap, format, tone, unit, className, }: MeterProps): JSX.Element;
+declare function Meter({ label, current, cap, format, tone, unit, className, }: MeterProps): React.JSX.Element;
 
 interface LineSeries {
     data: number[];
@@ -390,7 +390,7 @@ interface LineChartProps {
     labels?: string[];
     yTicks?: number;
 }
-declare function LineChart({ series, w, h, labels, yTicks }: LineChartProps): JSX.Element;
+declare function LineChart({ series, w, h, labels, yTicks }: LineChartProps): React.JSX.Element;
 interface BarChartProps {
     data: number[];
     labels?: string[];
@@ -398,7 +398,7 @@ interface BarChartProps {
     h?: number;
     color?: string;
 }
-declare function BarChart({ data, labels, w, h, color, }: BarChartProps): JSX.Element;
+declare function BarChart({ data, labels, w, h, color, }: BarChartProps): React.JSX.Element;
 interface DonutSegment {
     value: number;
     color: string;
@@ -409,14 +409,14 @@ interface DonutProps {
     size?: number;
     thickness?: number;
 }
-declare function Donut({ segments, size, thickness }: DonutProps): JSX.Element;
+declare function Donut({ segments, size, thickness }: DonutProps): React.JSX.Element;
 
 interface DialogProps {
     open?: boolean;
     onOpenChange?: (open: boolean) => void;
     children: ReactNode;
 }
-declare function Dialog({ open, onOpenChange, children }: DialogProps): JSX.Element;
+declare function Dialog({ open, onOpenChange, children }: DialogProps): React.JSX.Element;
 declare const DialogTrigger: React.ForwardRefExoticComponent<RadixDialog.DialogTriggerProps & React.RefAttributes<HTMLButtonElement>>;
 interface DialogContentProps {
     title?: ReactNode;
@@ -428,15 +428,15 @@ interface DialogContentProps {
     onPointerDownOutside?: (event: Event) => void;
     onInteractOutside?: (event: Event) => void;
 }
-declare function DialogContent({ title, description, width, showClose, className, children, onPointerDownOutside, onInteractOutside, }: DialogContentProps): JSX.Element;
+declare function DialogContent({ title, description, width, showClose, className, children, onPointerDownOutside, onInteractOutside, }: DialogContentProps): React.JSX.Element;
 declare function DialogBody({ className, children, }: {
     className?: string;
     children: ReactNode;
-}): JSX.Element;
+}): React.JSX.Element;
 declare function DialogFooter({ className, children, }: {
     className?: string;
     children: ReactNode;
-}): JSX.Element;
+}): React.JSX.Element;
 declare const DialogClose: React.ForwardRefExoticComponent<RadixDialog.DialogCloseProps & React.RefAttributes<HTMLButtonElement>>;
 
 type DrawerSide = "right" | "left";
@@ -445,7 +445,7 @@ interface DrawerProps {
     onOpenChange?: (open: boolean) => void;
     children: ReactNode;
 }
-declare function Drawer({ open, onOpenChange, children }: DrawerProps): JSX.Element;
+declare function Drawer({ open, onOpenChange, children }: DrawerProps): React.JSX.Element;
 declare const DrawerTrigger: React.ForwardRefExoticComponent<RadixDialog.DialogTriggerProps & React.RefAttributes<HTMLButtonElement>>;
 interface DrawerContentProps {
     side?: DrawerSide;
@@ -455,7 +455,7 @@ interface DrawerContentProps {
     className?: string;
     children: ReactNode;
 }
-declare function DrawerContent({ side, width, title, showClose, className, children, }: DrawerContentProps): JSX.Element;
+declare function DrawerContent({ side, width, title, showClose, className, children, }: DrawerContentProps): React.JSX.Element;
 declare const DrawerClose: React.ForwardRefExoticComponent<RadixDialog.DialogCloseProps & React.RefAttributes<HTMLButtonElement>>;
 
 interface TooltipProps {
@@ -466,14 +466,14 @@ interface TooltipProps {
     className?: string;
     triggerAsChild?: boolean;
 }
-declare function Tooltip({ content, children, side, delayDuration, className, triggerAsChild, }: TooltipProps): JSX.Element;
+declare function Tooltip({ content, children, side, delayDuration, className, triggerAsChild, }: TooltipProps): React.JSX.Element;
 
 interface PopoverProps {
     open?: boolean;
     onOpenChange?: (open: boolean) => void;
     children: ReactNode;
 }
-declare function Popover({ open, onOpenChange, children }: PopoverProps): JSX.Element;
+declare function Popover({ open, onOpenChange, children }: PopoverProps): React.JSX.Element;
 declare const PopoverTrigger: React.ForwardRefExoticComponent<RadixPopover.PopoverTriggerProps & React.RefAttributes<HTMLButtonElement>>;
 interface PopoverContentProps {
     side?: "top" | "right" | "bottom" | "left";
@@ -481,14 +481,14 @@ interface PopoverContentProps {
     className?: string;
     children: ReactNode;
 }
-declare function PopoverContent({ side, align, className, children, }: PopoverContentProps): JSX.Element;
+declare function PopoverContent({ side, align, className, children, }: PopoverContentProps): React.JSX.Element;
 
 interface DropdownProps {
     open?: boolean;
     onOpenChange?: (open: boolean) => void;
     children: ReactNode;
 }
-declare function Dropdown({ open, onOpenChange, children }: DropdownProps): JSX.Element;
+declare function Dropdown({ open, onOpenChange, children }: DropdownProps): React.JSX.Element;
 declare const DropdownTrigger: React.ForwardRefExoticComponent<RadixDropdown.DropdownMenuTriggerProps & React.RefAttributes<HTMLButtonElement>>;
 interface DropdownContentProps {
     side?: "top" | "right" | "bottom" | "left";
@@ -496,7 +496,7 @@ interface DropdownContentProps {
     className?: string;
     children: ReactNode;
 }
-declare function DropdownContent({ side, align, className, children, }: DropdownContentProps): JSX.Element;
+declare function DropdownContent({ side, align, className, children, }: DropdownContentProps): React.JSX.Element;
 interface DropdownItemProps {
     onSelect?: (e: Event) => void;
     danger?: boolean;
@@ -504,11 +504,11 @@ interface DropdownItemProps {
     className?: string;
     children: ReactNode;
 }
-declare function DropdownItem({ onSelect, danger, disabled, className, children, }: DropdownItemProps): JSX.Element;
+declare function DropdownItem({ onSelect, danger, disabled, className, children, }: DropdownItemProps): React.JSX.Element;
 declare function DropdownLabel({ children }: {
     children: ReactNode;
-}): JSX.Element;
-declare function DropdownSeparator(): JSX.Element;
+}): React.JSX.Element;
+declare function DropdownSeparator(): React.JSX.Element;
 
 interface AccordionProps {
     type?: "single" | "multiple";
@@ -519,22 +519,22 @@ interface AccordionProps {
     className?: string;
     children: ReactNode;
 }
-declare function Accordion({ type, defaultValue, value, onValueChange, collapsible, className, children, }: AccordionProps): JSX.Element;
+declare function Accordion({ type, defaultValue, value, onValueChange, collapsible, className, children, }: AccordionProps): React.JSX.Element;
 interface AccordionItemProps {
     value: string;
     className?: string;
     children: ReactNode;
 }
-declare function AccordionItem({ value, className, children }: AccordionItemProps): JSX.Element;
+declare function AccordionItem({ value, className, children }: AccordionItemProps): React.JSX.Element;
 interface AccordionTriggerProps {
     className?: string;
     children: ReactNode;
 }
-declare function AccordionTrigger({ className, children }: AccordionTriggerProps): JSX.Element;
+declare function AccordionTrigger({ className, children }: AccordionTriggerProps): React.JSX.Element;
 interface AccordionContentProps {
     className?: string;
     children: ReactNode;
 }
-declare function AccordionContent({ className, children }: AccordionContentProps): JSX.Element;
+declare function AccordionContent({ className, children }: AccordionContentProps): React.JSX.Element;
 
 export { Accordion, AccordionContent, type AccordionContentProps, AccordionItem, type AccordionItemProps, type AccordionProps, AccordionTrigger, type AccordionTriggerProps, AppShell, type AppShellDensity, type AppShellProps, type AppShellTheme, Avatar, type AvatarProps, type AvatarSize, AvatarStack, type AvatarStackProps, type AvatarStackUser, Badge, type BadgeProps, type BadgeTone, Banner, type BannerProps, type BannerTone, BarChart, type BarChartProps, Breadcrumb, type BreadcrumbItem, type BreadcrumbProps, Button, type ButtonProps, type ButtonSize, type ButtonVariant, Card, type CardProps, CellMeta, type CellMetaProps, CellStack, type CellStackProps, Checkbox, type CheckboxProps, Chip, type ChipProps, CostPill, type CostPillProps, Dialog, DialogBody, DialogClose, DialogContent, type DialogContentProps, DialogFooter, type DialogProps, DialogTrigger, Donut, type DonutProps, type DonutSegment, Drawer, DrawerClose, DrawerContent, type DrawerContentProps, type DrawerProps, type DrawerSide, DrawerTrigger, Dropdown, DropdownContent, type DropdownContentProps, DropdownItem, type DropdownItemProps, DropdownLabel, type DropdownProps, DropdownSeparator, DropdownTrigger, Empty, type EmptyProps, HealthDots, type HealthDotsProps, type HealthService, Icon, IconButton, type IconButtonProps, type IconName, type IconProps, KPI, type KPIAccent, type KPIProps, LineChart, type LineChartProps, type LineSeries, Meter, type MeterProps, type MeterTone, type NavGroup, type NavItem, PageHead, type PageHeadProps, Popover, PopoverContent, type PopoverContentProps, type PopoverProps, PopoverTrigger, Radio, type RadioProps, Select, type SelectOption, type SelectProps, Sidebar, SidebarBrand, type SidebarBrandProps, type SidebarProps, Sparkline, type SparklineProps, type Status, StatusBar, type StatusBarProps, StatusDot, type StatusDotProps, StatusLabel, type StatusLabelProps, type TabItem, Table, Tabs, type TabsProps, Tag, type TagProps, TextInput, type TextInputProps, Textarea, type TextareaProps, Toggle, type ToggleProps, Tooltip, type TooltipProps, TopBar, type TopBarProps, type WorkspaceOption, WorkspaceSwitcher, type WorkspaceSwitcherProps, cn };
