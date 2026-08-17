@@ -7,9 +7,23 @@
 node_modules/
 
 # Lock files
-# Intentionally NOT committed for a library — consumers maintain their own
-# lock file; this also avoids leaking host-specific registry URLs.
-package-lock.json
+# package-lock.json IS committed, reversing the original choice recorded here.
+# That choice was "not committed for a library — consumers maintain their own
+# lock file; this also avoids leaking host-specific registry URLs."
+#
+# Both halves were sound in isolation, and both are answered:
+#   - Consumers really do maintain their own lock file (npm ignores a
+#     dependency's lock entirely), but that argues committing one does not HELP
+#     consumers — not that omitting it is free. It costs us: because dist/ is
+#     committed (see above), the build inputs must be pinned or that artifact is
+#     only reproducible against whatever npm resolved on the day. This is not
+#     hypothetical — a floating @types/react rewrote every JSX.Element in
+#     dist/*.d.ts to React.JSX.Element between two builds of identical source.
+#   - Registry-URL leaking is already handled by .npmrc pinning the public
+#     registry; every resolved URL in the lock file is registry.npmjs.org.
+# `npm ci` also needs the lock file, and CI should use it to build dist/.
+#
+# Other package managers' locks stay ignored — one authoritative lock only.
 pnpm-lock.yaml
 yarn.lock
 

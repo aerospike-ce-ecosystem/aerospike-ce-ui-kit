@@ -166,6 +166,11 @@ and `cn` — all of which are also exported from the main entry, so `./server`
 adds an option and removes nothing. Anything interactive (`Button`, `Dialog`,
 `Dropdown`, `Tabs`, form controls, …) comes from the main entry only.
 
+The two are separate bundles, so if you import from both, `Card` from `.` and
+`Card` from `./server` are distinct module instances, and `cn`, `Icon` and
+`StatusDot` are duplicated across them. Nothing breaks — none of these hold
+module-level state — but prefer one entry per component to keep the payload down.
+
 ---
 
 ## Component catalogue
@@ -216,17 +221,26 @@ For deeper customization, fork the kit or `@import` your own CSS after `aerospik
 ```bash
 git clone git@github.com:aerospike-ce-ecosystem/aerospike-ce-ui-kit.git
 cd aerospike-ce-ui-kit
-npm install
-npm run build       # produces dist/
+npm ci              # exact pinned versions; use this to reproduce dist/
+npm run build       # rm -rf dist && tsup, then asserts the client boundary
 npm run dev         # watch mode
 npm run type-check  # tsc --noEmit
 ```
 
-The `.npmrc` in this repo pins the registry to `registry.npmjs.org` to
-avoid a developer's global config (which may point at an internal mirror)
-contaminating any future lock file.
+**`dist/` is committed on purpose** (see `.gitignore`) so `git+ssh` consumers get
+pre-built output with no build step. After editing anything under `src/`, run
+`npm run build` and commit the regenerated `dist/` in the same change.
 
-`package-lock.json` is intentionally **not committed** — see `.gitignore`.
+`npm run build` ends in a `postbuild` assertion
+(`scripts/assert-directives.mjs`) that fails the build unless `dist/index.{js,cjs}`
+begin with the `"use client"` directive and `dist/server.*` / `dist/tailwind/preset.*`
+carry none. Both properties depend on esbuild dropping directives while bundling,
+which no dependency range pins, so they are asserted rather than assumed.
+
+`package-lock.json` **is** committed, so `dist/` is reproducible from pinned
+inputs — see `.gitignore` for why that reverses the repo's original choice. The
+`.npmrc` pins the registry to `registry.npmjs.org`, keeping a developer's global
+config (which may point at an internal mirror) out of that lock file.
 
 ---
 
